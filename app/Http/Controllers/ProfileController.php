@@ -86,4 +86,8 @@ class ProfileController extends Controller
     {
         //
     }
+
+    public function connectSteam(Request $request){
+        
+    }
 }

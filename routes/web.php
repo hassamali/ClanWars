@@ -17,12 +17,22 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Steam Routes
+Route::get('auth/steam', 'AuthController@redirectToSteam')->name('auth.steam');
+Route::get('auth/steam/handle', 'AuthController@handle')->name('auth.steam.handle');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/news', 'NewsController@dotaNews')->name('DotaNews');
 
 // Players/Users Routes
 Route::resource('profile', 'ProfileController');
+Route::post('profile/steam/connect', 'ProfileController@connectSteam')->name('profileSteamConnect');
+
+
 // Clan Routes
 
 //Test Routes
@@ -30,5 +40,11 @@ Route::get('/test', function(){
     //http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=FE78599E790C897A251A433A7867127F&steamids=76561197960435530
     
     //$appid = 'FE78599E790C897A251A433A7867127F';
+    $id = 'kingsunny007';
+    
+
+    $test = Steam::convertId($id);
+
+    return $test;
     
 });
